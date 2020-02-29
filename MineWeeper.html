@@ -1,0 +1,68 @@
+<!-- MineWeeper: Developed by Leonardo Cech 
+[ github : LeonardoCech ] 
+No rights reserved. 
+
+     Begin : 12-20-2018.
+  last mod.: 29-02-2020.
+
+    Version: 1.0
+
+-->
+
+<html>
+<head>
+	<title>MineWeeper - by Leonardo Cech</title>
+	
+	<link rel="stylesheet" href="style.css">
+</head>
+<body oncontextmenu="return false">
+
+	<div id = "solidBG"></div>
+
+	<div id = "stats">
+
+		<div id = "show_bombs" class = "counter" >
+			BOMBS
+		    <span id = "bombs_amount"  class = "numbers"></span>
+		</div>
+
+		<button id = "main_bttn" title = "RESTART" onclick = "Restart()"></button>
+
+
+		<div id = "timer" class = "counter" >
+			TIME
+			<span id = "seconds" class = "numbers">0</span>
+		</div>
+		
+	</div>
+	
+	<div id = "field"></div>
+
+	  <div id = "changelog_page">      
+	    <ul>   
+	      <b>Changelog</b>                  <br>
+	      Alpha 1.0 - January 2nd, 2019. 
+	      <hr>
+
+	      Coming soon: 
+	      <li>Settings (Under development);</li>  
+	      
+	      <li>Best scores list.</li>
+	    </ul> 
+	    <a style = "float: right; color : rgba(0,0,0,0.6);" onclick = "closeChangelog()">close</a>
+	  </div>                                                <br>
+
+	<p id = "footer">
+	    <span title = "Click to se what's new! :)" 
+	          onclick = "openChangelog()">Changelog
+	    </span>                                                               <br><br>             
+	    Version: Alpha 1.0 <br>
+	    MineWeeper - Developed by Leonardo Cech 
+		<br><a style = "color: white;" href = "https://github.com/LeonardoCech" title = "Click to Visit" target = "_blank"> [ github: LeonardoCech ]</a>
+		, <br> Brazil. 2019, No right reserved.
+    </p> 
+	
+	<script src="script.js"></script>
+
+</body> 
+</html>

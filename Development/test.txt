@@ -1,0 +1,242 @@
+Teste com Ponsições Pré-definidas:
+
+var field = [
+[
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false}
+],
+[
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false}
+],[
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false}
+],[
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false}
+],[
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false},
+{state: true , bomb: false, value: 0 , flag: false}
+]
+];
+
+Cópia do Algorítmo Original:
+
+var field = [];
+field.length = qntPosi;
+
+var defautPosi = new Array;
+
+for ( var ix = 0 ; ix < qntPosi ; ix++ ) {
+	
+	field[ix] = [];
+	field[ix].length = qntPosi;
+}
+	
+for ( var i = 0 ; i < ( qntPosi * qntPosi); i++ ) {
+
+	var bombs = false;
+
+	if ( qntBomb > 0) { bombs = true; qntBomb--; }
+
+	defautPosi[i] = { state: true, bomb: bombs, value: 0, flag: false, posi: "" }
+}
+
+function shuffle(array) {
+  
+  var m = array.length, t, i;
+
+  while (m) {
+    i = Math.floor(Math.random() * m--);      
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+  return array;
+}
+
+//defautPosi = shuffle(defautPosi);
+
+
+
+
+
+
+for ( var a = 0 ; a <= id1 ; a++ ) { // Sentido 6 - 9
+
+	for ( var b = 1 ; b <= id2 ; b++ ) { 
+		
+		ID1 = id1 + b;
+		ID2 = id2 - a;
+		FIELD = field[ID1][ID2];
+
+		bomb  = FIELD.bomb;
+		value = FIELD.value;
+		state = FIELD.state;
+
+		idFinal = "a-" + ID1.toString() + "-" + ID2.toString();
+
+		if ( bomb == false && value > 0 ) { onClick(idFinal); }
+
+		else if ( bomb == false ) {
+
+		document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+		document.getElementById(idFinal).disabled = "true";
+		FIELD.state = false;
+		}
+	}
+}
+
+for ( var a = 0 ; a <= id1 ; a++ ) { // Sentido 3 - 6
+
+	for ( var b = 1 ; b <= id2 ; b++ ) { 
+		
+		ID1 = id1 - b;
+		ID2 = id2 + a;
+		FIELD = field[ID1][ID2];
+
+		bomb  = FIELD.bomb;
+		value = FIELD.value;
+		state = FIELD.state;
+
+		idFinal = "a-" + ID1.toString() + "-" + ID2.toString();
+
+		if ( bomb == false && value > 0 ) { onClick(idFinal); }
+
+		else if ( bomb == false ) {
+
+		document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+		document.getElementById(idFinal).disabled = "true";
+		FIELD.state = false;
+		}
+	}
+}
+	
+
+	CONFIGURAÇÕES 
+	CSS -----------------------------------------------------------------------------------------------
+
+		#solidBG {
+			width : 100vw;
+			height: 100vh;
+			position: absolute;
+			z-index: 3;
+			display: none;
+		}
+		#config_screen {
+			position: absolute;
+			z-index: 4;
+			background-color: white;
+			width : 250px;
+			height: auto;
+			margin:  0 50% 0 50%;	
+			display: block;
+ 			border: 1px solid lightgray;
+			border-radius: 10px;
+			padding: 15px;
+			font-family: sans-serif;
+		}
+
+		#config_bttn {
+			width : 30px;
+			height: 30px;
+			border: 1px solid gray;
+			border-radius: 5px;
+			position: absolute;
+			z-index: 1;
+			margin: -40px 0 0 400px;
+			background-image: url(sources/textures/config.png);
+			background-size: 100%;
+		}
+
+		.Range { float: right; }
+		
+		#start_bttn {
+			color: gray;
+			width : 100%;
+			height: 30px;
+			border-radius: 15px;
+			background-color: rgba(50,50,50,0.1);
+		}
+
+		#start_bttn:hover {
+			color: gray;
+			background-color: rgba(0,255,0,0.1);
+			border: 2px solid lightgreen;
+		}
+	
+
+	HTML-------------------------------------------------------------------------------------------------
+
+	<div id = "solidBG"></div>
+
+	<div id = "config_screen">
+		
+		<h1>Settings</h1>
+		
+		<hr><br>
+		
+		<label>Width: </label> <span id = "showWidthRange"></span>
+		<input id = "widthRange" class = "Range" type = "range" min="5" max = "20" value = "10" />
+
+		<br><Br>
+		<label>Height: </label> <span id = "showHeightRange"></span>
+		<input id = "heightRange" class = "Range" type = "range" min="5" max = "20" value = "10" />
+
+		<br><Br>
+		<label>Bomb: </label> <span id = "showBombRange"></span>
+		<input id = "bombRange" class = "Range" type = "range" min="1" value = "10" />
+
+		<br><br>
+		<button id = "start_bttn">START</button>
+	</div>
+
+			<div id = "config_bttn" onclick = "Config()" title = "Settings"></div>
+
+
+	Javascript -------------------------------------------------------------------------------------------
+		
+	var qntPosiY;
+	var qntPosiX; 
+	setInterval(function(){
+		qntPosiY = document.getElementById('heightRange').value; // Remember ==> field[Y][X];
+		qntPosiX = document.getElementById('widthRange').value;
+		document.getElementById('bombRange').max = (( (qntPosiY * qntPosiX) * 90) / 100).toFixed();
+	}, 500);
+
+	var numBombs = document.getElementById('bombRange').value;
+	var qntBomb  = numBombs;
+	var qntFlag  =  0;
+
+	document.getElementById("main_bttn").style.backgroundImage = "url(sources/textures/smile.png)";
+	document.getElementById("main_bttn").style.backgroundSize = "100%";
+	
+	setInterval(updateRange, 200);
+
+	function updateRange() { 
+		
+		var widthRange = document.getElementById("widthRange").value;
+		document.getElementById("showWidthRange").innerHTML = widthRange; 
+
+		var heightRange = document.getElementById("heightRange").value;
+		document.getElementById("showHeightRange").innerHTML = heightRange; 
+
+		var bombRange = document.getElementById("bombRange").value;
+		document.getElementById("showBombRange").innerHTML = bombRange; 
+
+	}

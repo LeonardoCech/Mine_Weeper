@@ -1,0 +1,1214 @@
+		//																				//      11
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//    1111
+																						//      11
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//      11
+																						//     1111
+		
+		for ( var a = id2 ; a >= 0 ; a-- ) { 
+			
+			FIELD = field[id1][a];
+
+			bomb  = FIELD.bomb;
+			value = FIELD.value;
+			state = FIELD.state;
+			flag  = FIELD.flag;
+
+			idFinal = "a-" + id1.toString() + "-" + a.toString();
+
+			if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+			if (value > 0) { onClick(idFinal); a = 0; }
+
+			else if ( bomb == false && value === 0) {
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Aa = id1; Aa >= 0 ; Aa-- ) {
+					
+					FIELD = field[Aa][a];
+
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + Aa.toString() + "-" + a.toString();
+					
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if (value > 0) { onClick(idFinal); Aa = 0; }
+
+					else if ( bomb == false ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+
+						var AaAround = new Array(8);
+
+						AaAround[0] = (Aa > 0) && (a > 0) ? field[Aa - 1][a - 1].posi = (Aa - 1).toString() +"-"+ (a - 1).toString() : "";
+
+						AaAround[1] = Aa > 0 ? field[Aa - 1][a].posi = (Aa - 1).toString() +"-"+ a.toString() : "";
+
+						AaAround[2] = (a < lastPosi) && (Aa > 0)? field[Aa - 1][a + 1].posi = (Aa - 1).toString() +"-"+ (a + 1).toString() : "";
+
+						AaAround[3] = a < lastPosi ? field[Aa][a + 1].posi = Aa.toString() +"-"+ (a + 1).toString() : "";
+
+						AaAround[4] = (Aa < lastPosi) && (a < lastPosi) ? field[Aa + 1][a + 1].posi = (Aa + 1).toString() +"-"+ (a + 1).toString() : "";
+
+						AaAround[5] = Aa < lastPosi ? field[Aa + 1][a].posi = (Aa +  1).toString() +"-"+ a.toString() : "";
+
+						AaAround[6] = (Aa < lastPosi) && (a > 0) ? field[Aa + 1][a - 1].posi = (Aa + 1).toString() +"-"+ (a - 1).toString() : "";
+
+						AaAround[7] = a > 0 ? field[Aa][a - 1].posi = Aa.toString() +"-"+ (a - 1).toString() : "";
+
+						if (AaAround[0] != "") {
+
+							var position = AaAround[0].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && value > 0) { AroundPo.push(idFinal); }
+						}
+
+						if (AaAround[1] != "") {
+
+							var position = AaAround[1].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}			
+
+						if (AaAround[2] != "") {
+
+							var position = AaAround[2].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (AaAround[3] != "") {
+
+							var position = AaAround[3].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (AaAround[4] != "") {
+
+							var position = AaAround[4].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (AaAround[5] != "") {
+
+							var position = AaAround[5].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+
+						if (AaAround[6] != "") {
+
+							var position = AaAround[6].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (AaAround[7] != "") {
+
+							var position = AaAround[7].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Ab = id1; Ab <= lastPosi ; Ab++ ) {
+					
+					FIELD = field[Ab][a];
+
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + Ab.toString() + "-" + a.toString();
+
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if (value > 0) { onClick(idFinal); Ab = lastPosi; }
+
+					else if ( bomb == false ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+
+						var AbAround = new Array(8); 
+
+						AbAround[0] = (Ab> 0) && (a > 0) ? field[Ab- 1][a - 1].posi = (Ab- 1).toString() +"-"+ (a - 1).toString() : "";
+
+						AbAround[1] = Ab> 0 ? field[Ab- 1][a].posi = (Ab- 1).toString() +"-"+ a.toString() : "";
+
+						AbAround[2] = (a < lastPosi) && (Ab> 0)? field[Ab- 1][a + 1].posi = (Ab- 1).toString() +"-"+ (a + 1).toString() : "";
+
+						AbAround[3] = a < lastPosi ? field[Ab][a + 1].posi = Ab.toString() +"-"+ (a + 1).toString() : "";
+
+						AbAround[4] = (Ab< lastPosi) && (a < lastPosi) ? field[Ab+ 1][a + 1].posi = (Ab+ 1).toString() +"-"+ (a + 1).toString() : "";
+
+						AbAround[5] = Ab< lastPosi ? field[Ab+ 1][a].posi = (Ab+  1).toString() +"-"+ a.toString() : "";
+
+						AbAround[6] = (Ab< lastPosi) && (a > 0) ? field[Ab+ 1][a - 1].posi = (Ab+ 1).toString() +"-"+ (a - 1).toString() : "";
+
+						AbAround[7] = a > 0 ? field[Ab][a - 1].posi = Ab.toString() +"-"+ (a - 1).toString() : "";
+
+						if (AbAround[0] != "") {
+
+							var position = AbAround[0].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && value > 0) { AroundPo.push(idFinal); }
+						}
+
+						if (AbAround[1] != "") {
+
+							var position = AbAround[1].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}			
+
+						if (AbAround[2] != "") {
+
+							var position = AbAround[2].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (AbAround[3] != "") {
+
+							var position = AbAround[3].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (AbAround[4] != "") {
+
+							var position = AbAround[4].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (AbAround[5] != "") {
+
+							var position = AbAround[5].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+
+						if (AbAround[6] != "") {
+
+							var position = AbAround[6].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (AbAround[7] != "") {
+
+							var position = AbAround[7].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+			}
+		}
+
+																						//    2222222
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//         22
+																						//    2222222
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//    22 
+																						//    2222222
+
+		for ( var b = id1 ; b >= 0 ; b-- ) {
+			
+			FIELD = field[b][id2];
+
+			bomb  = FIELD.bomb;
+			value = FIELD.value;
+			state = FIELD.state;
+			flag  = FIELD.flag;
+
+			idFinal = "a-" + b.toString() + "-" + id2.toString();
+
+			if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+			if (value > 0) { onClick(idFinal); b = 0; }
+
+			else if ( bomb == false && value === 0) {
+
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Ba = id2; Ba >= 0 ; Ba-- ) {
+					
+					FIELD = field[b][Ba];
+
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + b.toString() + "-" + Ba.toString();
+					
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if (value > 0) { onClick(idFinal); Ba = 0;}
+
+					else if ( bomb == false && value < 9 ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+						var BaAround = new Array(8);
+
+						BaAround[0] = (b > 0) && (Ba > 0) ? field[b - 1][Ba - 1].posi = (b - 1).toString() +"-"+ (Ba - 1).toString() : "";
+
+						BaAround[1] = b > 0 ? field[b - 1][Ba].posi = (b - 1).toString() +"-"+ Ba.toString() : "";
+
+						BaAround[2] = (Ba < lastPosi) && (b > 0)? field[b - 1][Ba + 1].posi = (b - 1).toString() +"-"+ (Ba + 1).toString() : "";
+
+						BaAround[3] = Ba < lastPosi ? field[b][Ba + 1].posi = b.toString() +"-"+ (Ba + 1).toString() : "";
+
+						BaAround[4] = (b < lastPosi) && (Ba < lastPosi) ? field[b + 1][Ba + 1].posi = (b + 1).toString() +"-"+ (Ba + 1).toString() : "";
+
+						BaAround[5] = b < lastPosi ? field[b + 1][Ba].posi = (b +  1).toString() +"-"+ Ba.toString() : "";
+
+						BaAround[6] = (b < lastPosi) && (Ba > 0) ? field[b + 1][Ba - 1].posi = (b + 1).toString() +"-"+ (Ba - 1).toString() : "";
+
+						BaAround[7] = Ba > 0 ? field[b][Ba - 1].posi = b.toString() +"-"+ (Ba - 1).toString() : "";
+
+						if (BaAround[0] != "") {
+
+							var position = BaAround[0].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+							var state = field[b - 1][Ba - 1].state;
+						    var	value = field[b - 1][Ba - 1].value;
+							var bomb  = field[b - 1][Ba - 1].bomb;
+							var flag  = field[b - 1][Ba - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[b - 1][Ba - 1].flag = false; qntFlag--; }
+
+							if( bomb == false && value > 0) { AroundPo.push(idFinal); }
+						}
+
+						if (BaAround[1] != "") {
+
+							var position = BaAround[1].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}			
+
+						if (BaAround[2] != "") {
+
+							var position = BaAround[2].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (BaAround[3] != "") {
+
+							var position = BaAround[3].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (BaAround[4] != "") {
+
+							var position = BaAround[4].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (BaAround[5] != "") {
+
+							var position = BaAround[5].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+
+						if (BaAround[6] != "") {
+
+							var position = BaAround[6].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (BaAround[7] != "") {
+
+							var position = BaAround[7].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Bb = id2; Bb <= lastPosi ; Bb++ ) {
+					
+					FIELD  = field[b][Bb];
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + b.toString() + "-" + Bb.toString();
+
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if ( value > 0 ) { onClick(idFinal); Bb = lastPosi; }
+
+					else if ( bomb == false ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+						var BbAround = new Array(8);
+
+						BbAround[0] = (b > 0) && (Bb > 0) ? field[b - 1][Bb - 1].posi = (b - 1).toString() +"-"+ (Bb - 1).toString() : "";
+
+						BbAround[1] = b > 0 ? field[b - 1][Bb].posi = (b - 1).toString() +"-"+ Bb.toString() : "";
+
+						BbAround[2] = (Bb < lastPosi) && (b > 0)? field[b - 1][Bb + 1].posi = (b - 1).toString() +"-"+ (Bb + 1).toString() : "";
+
+						BbAround[3] = Bb < lastPosi ? field[b][Bb + 1].posi = b.toString() +"-"+ (Bb + 1).toString() : "";
+
+						BbAround[4] = (b < lastPosi) && (Bb < lastPosi) ? field[b + 1][Bb + 1].posi = (b + 1).toString() +"-"+ (Bb + 1).toString() : "";
+
+						BbAround[5] = b < lastPosi ? field[b + 1][Bb].posi = (b +  1).toString() +"-"+ Bb.toString() : "";
+
+						BbAround[6] = (b < lastPosi) && (Bb > 0) ? field[b + 1][Bb - 1].posi = (b + 1).toString() +"-"+ (Bb - 1).toString() : "";
+
+						BbAround[7] = Bb > 0 ? field[b][Bb - 1].posi = b.toString() +"-"+ (Bb - 1).toString() : "";
+
+						if (BbAround[0] != "") {
+
+							var position = BbAround[0].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && value > 0) { AroundPo.push(idFinal); }
+						}
+
+						if (BbAround[1] != "") {
+
+							var position = BbAround[1].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}			
+
+						if (BbAround[2] != "") {
+
+							var position = BbAround[2].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (BbAround[3] != "") {
+
+							var position = BbAround[3].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (BbAround[4] != "") {
+
+							var position = BbAround[4].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (BbAround[5] != "") {
+
+							var position = BbAround[5].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true) { AroundPo.push(idFinal); }
+						}
+
+						if (BbAround[6] != "") {
+
+							var position = BbAround[6].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (BbAround[7] != "") {
+
+							var position = BbAround[7].split("-");
+							var id1 = parseInt(position[0]);
+							var id2 = parseInt(position[1]);
+
+							state = field[id1][id2].state;
+							value = field[id1][id2].value;
+							bomb  = field[id1][id2].bomb;
+							flag  = field[id1][id2].flag;
+
+							idFinal = "a-" + id1 + "-" + id2;
+
+							if ( flag == true ) { field[id1][id2].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+			}
+		}
+
+		
+
+					    																//    44   44
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//    44   44
+																						//    4444444
+		//000000000000000000000000000000000000000000000000000000000000000000000000000000//         44
+																						//         44
+	
+		for ( var d = id1 ; d <= lastPosi ; d++ ) {
+			
+			FIELD = field[d][id2];
+
+			bomb  = FIELD.bomb;
+			value = FIELD.value;
+			state = FIELD.state;
+			flag  = FIELD.flag;
+
+			idFinal = "a-" + d.toString() + "-" + id2.toString();
+
+			if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+			if (value > 0) { onClick(idFinal); d = lastPosi; }
+
+			else if ( bomb == false && value === 0 ) {
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Da = id2; Da >= 0 ; Da-- ) {
+					
+					FIELD = field[d][Da];
+
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + d.toString() + "-" + Da.toString();
+					
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if (value > 0) { onClick(idFinal); Da = 0; }
+
+					else if ( bomb == false && value === 0 ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+	
+						var DaAround = new Array(8);
+
+						DaAround[0] = (d > 0) && (Da > 0) ? field[d - 1][Da - 1].posi = (d - 1).toString() +"-"+ (Da - 1).toString() : "";
+
+						DaAround[1] = d > 0 ? field[d - 1][Da].posi = (d - 1).toString() +"-"+ Da.toString() : "";
+
+						DaAround[2] = (Da < lastPosi) && (d > 0)? field[d - 1][Da + 1].posi = (d - 1).toString() +"-"+ (Da + 1).toString() : "";
+
+						DaAround[3] = Da < lastPosi ? field[d][Da + 1].posi = d.toString() +"-"+ (Da + 1).toString() : "";
+
+						DaAround[4] = (d < lastPosi) && (Da < lastPosi) ? field[d + 1][Da + 1].posi = (d + 1).toString() +"-"+ (Da + 1).toString() : "";
+
+						DaAround[5] = d < lastPosi ? field[d + 1][Da].posi = (d +  1).toString() +"-"+ Da.toString() : "";
+
+						DaAround[6] = (d < lastPosi) && (Da > 0) ? field[d + 1][Da - 1].posi = (d + 1).toString() +"-"+ (Da - 1).toString() : "";
+
+						DaAround[7] = Da > 0 ? field[d][Da - 1].posi = d.toString() +"-"+ (Da - 1).toString() : "";
+
+						if (DaAround[0] != "") {
+
+							var position = DaAround[0].split("-");
+
+							var state = field[d - 1][Da - 1].state;
+						    var	value = field[d - 1][Da - 1].value;
+							var bomb  = field[d - 1][Da - 1].bomb;
+							var flag  = field[d - 1][Da - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Da - 1].flag = false; qntflag--; }
+
+							if( bomb == false ) { AroundPo.push(idFinal); }
+						}
+
+						if (DaAround[1] != "") {
+
+							var position = DaAround[1].split("-");
+
+							state = field[d - 1][Da].state;
+							value = field[d - 1][Da].value;
+							bomb  = field[d - 1][Da].bomb;
+							flag  = field[d - 1][Da].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Da - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}			
+
+						if (DaAround[2] != "") {
+
+							var position = DaAround[2].split("-");
+
+							state = field[d - 1][Da + 1].state;
+							value = field[d - 1][Da + 1].value;
+							bomb  = field[d - 1][Da + 1].bomb;
+							flag  = field[d - 1][Da + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Da + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (DaAround[3] != "") {
+
+							var position = DaAround[3].split("-");
+
+							state = field[d][Da + 1].state;
+							value = field[d][Da + 1].value;
+							bomb  = field[d][Da + 1].bomb;
+							flag  = field[d][Da + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d][Da + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (DaAround[4] != "") {
+
+							var position = DaAround[4].split("-");
+
+							state = field[d + 1][Da + 1].state;
+							value = field[d + 1][Da + 1].value;
+							bomb  = field[d + 1][Da + 1].bomb;
+							flag  = field[d + 1][Da + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Da + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (DaAround[5] != "") {
+
+							var position = DaAround[5].split("-");
+							
+							state = field[d + 1][Da].state;
+							value = field[d + 1][Da].value;
+							bomb  = field[d + 1][Da].bomb;
+							flag  = field[d + 1][Da].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Da].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (DaAround[6] != "") {
+
+							var position = DaAround[6].split("-");
+							
+							state = field[d + 1][Da - 1].state;
+							value = field[d + 1][Da - 1].value;
+							bomb  = field[d + 1][Da - 1].bomb;
+							flag  = field[d + 1][Da - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Da - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (DaAround[7] != "") {
+
+							var position = DaAround[7].split("-");
+							
+							state = field[d][Da - 1].state;
+							value = field[d][Da - 1].value;
+							bomb  = field[d][Da - 1].bomb;
+							flag  = field[d][Da - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d][Da - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+
+				//	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))	
+				// ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
+				//
+
+				for ( var Db = id2; Db <= lastPosi ; Db++ ) {
+					
+					FIELD = field[d][Db];
+
+					bomb  = FIELD.bomb;
+					value = FIELD.value;
+					state = FIELD.state;
+					flag  = FIELD.flag;
+
+					idFinal = "a-" + d.toString() + "-" + Db.toString();
+
+					if ( flag == true ) { FIELD.flag = false; qntFlag--; }
+
+					if (value > 0) { onClick(idFinal); Db = lastPosi; }
+
+					else if ( bomb == false && value === 0 ) {
+
+						document.getElementById(idFinal).style.backgroundImage = "url(sources/textures/pressed.png)";
+						document.getElementById(idFinal).disabled = "true";
+						FIELD.state = false;
+
+
+						var DbAround = new Array(8);
+
+						DbAround[0] = (d > 0) && (Db > 0) ? field[d - 1][Db - 1].posi = (d - 1).toString() +"-"+ (Db - 1).toString() : "";
+
+						DbAround[1] = d > 0 ? field[d - 1][Db].posi = (d - 1).toString() +"-"+ Db.toString() : "";
+
+						DbAround[2] = (Db < lastPosi) && (d > 0)? field[d - 1][Db + 1].posi = (d - 1).toString() +"-"+ (Db + 1).toString() : "";
+
+						DbAround[3] = Db < lastPosi ? field[d][Db + 1].posi = d.toString() +"-"+ (Db + 1).toString() : "";
+
+						DbAround[4] = (d < lastPosi) && (Db < lastPosi) ? field[d + 1][Db + 1].posi = (d + 1).toString() +"-"+ (Db + 1).toString() : "";
+
+						DbAround[5] = d < lastPosi ? field[d + 1][Db].posi = (d +  1).toString() +"-"+ Db.toString() : "";
+
+						DbAround[6] = (d < lastPosi) && (Db > 0) ? field[d + 1][Db - 1].posi = (d + 1).toString() +"-"+ (Db - 1).toString() : "";
+
+						DbAround[7] = Db > 0 ? field[d][Db - 1].posi = d.toString() +"-"+ (Db - 1).toString() : "";
+
+						if (DbAround[0] != "") {
+
+							var position = DbAround[0].split("-");
+
+							var state = field[d - 1][Db - 1].state;
+						    var	value = field[d - 1][Db - 1].value;
+							var bomb  = field[d - 1][Db - 1].bomb;
+							var flag  = field[d - 1][Db - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Db - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (DbAround[1] != "") {
+
+							var position = DbAround[1].split("-");
+
+							state = field[d - 1][Db].state;
+							value = field[d - 1][Db].value;
+							bomb  = field[d - 1][Db].bomb;
+							flag  = field[d - 1][Db].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Db - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}			
+
+						if (DbAround[2] != "") {
+
+							var position = DbAround[2].split("-");
+
+							state = field[d - 1][Db + 1].state;
+							value = field[d - 1][Db + 1].value;
+							bomb  = field[d - 1][Db + 1].bomb;
+							flag  = field[d - 1][Db + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d - 1][Db + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+									
+
+						if (DbAround[3] != "") {
+
+							var position = DbAround[3].split("-");
+
+							state = field[d][Db + 1].state;
+							value = field[d][Db + 1].value;
+							bomb  = field[d][Db + 1].bomb;
+							flag  = field[d][Db + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[c][Db + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+								
+						if (DbAround[4] != "") {
+
+							var position = DbAround[4].split("-");
+
+							state = field[d + 1][Db + 1].state;
+							value = field[d + 1][Db + 1].value;
+							bomb  = field[d + 1][Db + 1].bomb;
+							flag  = field[d + 1][Db + 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Db + 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (DbAround[5] != "") {
+
+							var position = DbAround[5].split("-");
+							
+							state = field[d + 1][Db].state;
+							value = field[d + 1][Db].value;
+							bomb  = field[d + 1][Db].bomb;
+							flag  = field[d + 1][Db].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Db].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+						}
+
+						if (DbAround[6] != "") {
+
+							var position = DbAround[6].split("-");
+							
+							state = field[d + 1][Db - 1].state;
+							value = field[d + 1][Db - 1].value;
+							bomb  = field[d + 1][Db - 1].bomb;
+							flag  = field[d + 1][Db - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d + 1][Db - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+
+						if (DbAround[7] != "") {
+
+							var position = DbAround[7].split("-");
+							
+							state = field[d][Db - 1].state;
+							value = field[d][Db - 1].value;
+							bomb  = field[d][Db - 1].bomb;
+							flag  = field[d][Db - 1].flag;
+
+							idFinal = "a-" + position[0] + "-" + position[1];
+
+							if ( flag == true ) { field[d][Db - 1].flag = false; qntflag--; }
+
+							if( bomb == false && state == true ) { AroundPo.push(idFinal); }
+									
+						}
+					}
+				}
+			}
+		}
